@@ -1,0 +1,46 @@
+<form [formGroup]="tarjetaForm" (ngSubmit)="createTarjeta(tarjetaForm.value)">
+
+	<div class="form-group mx-sm-3 mb-2">
+		<label for="numero">
+      Numero
+    </label>
+		<input novalidate
+    id="numero"
+    class="form-control"
+      formControlName="numero"
+      placeholder="Numero">
+
+		<div class="alert alert-danger alert-dismissible fade show"
+			*ngIf="tarjetaForm.get('numero').hasError('required') && tarjetaForm.get('numero').touched">
+			El numero es requerido
+		</div>
+
+    
+	</div>
+
+	<div class="form-group  mx-sm-3 mb-2">
+		<label for="cvv">
+      Cvv
+    </label>
+		<input id="cvv" type="text"
+     class="form-control"
+     formControlName="cvv"
+     placeholder="Cvv">
+
+		<div class="alert alert-danger alert-dismissible fade show"
+			*ngIf="tarjetaForm.get('cvv').hasError('required') && tarjetaForm.get('cvv').touched">
+			El cvv es requerido
+		</div>
+    <div class="alert alert-danger alert-dismissible fade show"
+      *ngIf="tarjetaForm.get('cvv').hasError('minlength') && tarjetaForm.get
+      ('cvv').touched">
+      El cvv debe tener 3 digitos
+    </div>
+    
+ 
+
+    
+	</div>
+	<button class="button mx-sm-3 mb-2" type="submit" [disabled]="tarjetaForm.invalid">Create</button>
+
+</form>
